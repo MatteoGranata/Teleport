@@ -1,43 +1,86 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const isProduction = process.env.NODE_ENV == 'production';
+
+
+const stylesHandler = isProduction
+    ? MiniCssExtractPlugin.loader
+    : 'style-loader';
 
 
 
-module.exports = {
-    mode: 'development',
+const config = {
     entry: './src/js/index.js',
-    devtool: 'inline-source-map',
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Development',
-            template: 'index.html',
-        }),
-        new MiniCssExtractPlugin({
-            filename: 'styles.css'
-        }),
-
-    ],
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+    },
     devServer: {
         open: true,
         host: 'localhost',
         static: path.resolve(__dirname, 'dist'),
     },
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        clean: true,
-    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'index.html',
+        }),
+
+        new MiniCssExtractPlugin({
+            filename: 'styles.css'
+        }
+
+        ),
+
+
+    ],
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
-              },
-            {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
+                test: /\.(js|jsx)$/i,
+                loader: 'babel-loader',
             },
+            {
+                test: /\.css$/i,
+                use: [stylesHandler, 'css-loader'],
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+
+                            outputPath: 'img/',
+
+                        }
+                    },
+
+                    {
+                        loader: 'img-optimize-loader',
+                        options: {
+                            compress: {
+                                mode: 'lossless'
+                            }
+                        }
+                    }
+                ]
+            },
+
+
         ],
     },
+};
+
+module.exports = () => {
+    if (isProduction) {
+        config.mode = 'production';
+
+
+    } else {
+        config.mode = 'development';
+    }
+    return config;
 };
