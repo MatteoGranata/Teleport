@@ -1,5 +1,6 @@
-import '../css/style.css';
 import _ from 'lodash';
+import '../css/style.css';
+
 
 const input = document.getElementById("research");
 input.addEventListener("keyup", text)
