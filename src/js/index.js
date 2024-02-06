@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import '../css/style.css';
 
+
+
 const input = document.getElementById("research");
 input.addEventListener("keyup", text)
 input.addEventListener("keyup", autocomplete)
@@ -219,6 +221,7 @@ const info = document.getElementById("infoPoint");
 const home = document.getElementById("home");
 const homePage = document.getElementById("homePage");
 const earth = document.getElementById("earth");
+
 
 infoSection.style.display = "none"
 home.style.display = "none"

@@ -40,25 +40,10 @@ const config = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
-            },
+              },
             {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: 'img/',
-                        }
-                    },
-                    {
-                        loader: 'img-optimize-loader',
-                        options: {
-                            compress: {
-                                mode: 'lossless'
-                            }
-                        }
-                    }
-                ]
+               
             },
         ],
     },
