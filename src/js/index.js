@@ -1,6 +1,5 @@
 import '../css/style.css';
 import _ from 'lodash';
-import Icon from '../img/Earth.png';
 
 const input = document.getElementById("research");
 input.addEventListener("keyup", text)
