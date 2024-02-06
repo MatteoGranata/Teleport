@@ -4,12 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
-
 const stylesHandler = isProduction
     ? MiniCssExtractPlugin.loader
     : 'style-loader';
-
-
 
 const config = {
     entry: './src/js/index.js',
@@ -26,14 +23,9 @@ const config = {
         new HtmlWebpackPlugin({
             template: 'index.html',
         }),
-
         new MiniCssExtractPlugin({
             filename: 'styles.css'
-        }
-
-        ),
-
-
+        }),
     ],
     module: {
         rules: [
@@ -51,17 +43,13 @@ const config = {
               },
             {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-
                             outputPath: 'img/',
-
                         }
                     },
-
                     {
                         loader: 'img-optimize-loader',
                         options: {
@@ -72,8 +60,6 @@ const config = {
                     }
                 ]
             },
-
-
         ],
     },
 };
