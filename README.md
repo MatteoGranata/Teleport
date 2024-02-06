@@ -10,7 +10,7 @@ Utilizzando JavaScript, CSS e HTML, questo sito offre un'esperienza semplice e i
 
 
 ## Demo
-Live demo: <a href="https://matteogranata.github.io/teleport/" target="_blank">QUI</a>.</h4>
+Live demo: <a href="https://main--beamish-bubblegum-87c0fe.netlify.app" target="_blank">QUI</a>.</h4>
 <br>
 ![](https://komarev.com/ghpvc/?username=MatteoGranata&color=e2b6ff&style=flat-square)
 
